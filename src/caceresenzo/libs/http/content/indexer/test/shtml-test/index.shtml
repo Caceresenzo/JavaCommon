@@ -1,0 +1,5 @@
+an index page
+with nothing<!--#include file="blah.inc" --><!--#include file="blah.inc" -->useful
+<!--#include file="page2.shtml" -->
+<!--#include file="../comp.bat" -->
+on it
