@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -106,7 +107,7 @@ public class Downloader {
 	/**
 	 * Get a given page from an URL address
 	 */
-	static public String webget(String address, HashMap<String, String> params) throws IOException {
+	public static String webget(String address, HashMap<String, String> params, Charset charset) throws IOException {
 		String result = "";
 		
 		URL webpage = new URL(address);
@@ -122,7 +123,7 @@ public class Downloader {
 			}
 		}
 		InputStream inputStream = urlConnection.getInputStream();
-		InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+		InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
 		BufferedReader in = new BufferedReader(inputStreamReader);
 		
 		String inputLine;
@@ -134,8 +135,12 @@ public class Downloader {
 		return result;
 	}
 	
-	static public String webget(String address) throws IOException {
-		return webget(address, null);
+	public static String webget(String address, Charset charset) throws IOException {
+		return webget(address, null, charset);
+	}
+	
+	public static String webget(String address) throws IOException {
+		return webget(address, null, Charset.defaultCharset());
 	}
 	
 	public static interface OnDownloadProgress {
