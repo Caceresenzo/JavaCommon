@@ -12,7 +12,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+
+import caceresenzo.libs.logger.Logger;
 
 public class Downloader {
 	
@@ -107,7 +111,7 @@ public class Downloader {
 	/**
 	 * Get a given page from an URL address
 	 */
-	public static String webget(String address, HashMap<String, String> params, Charset charset) throws IOException {
+	public static String webget(String address, Map<String, String> params, Charset charset) throws IOException {
 		String result = "";
 		
 		URL webpage = new URL(address);
@@ -122,8 +126,9 @@ public class Downloader {
 				}
 			}
 		}
+		
 		InputStream inputStream = urlConnection.getInputStream();
-		InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+		InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charset);
 		BufferedReader in = new BufferedReader(inputStreamReader);
 		
 		String inputLine;
