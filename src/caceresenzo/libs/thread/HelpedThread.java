@@ -10,7 +10,7 @@ public abstract class HelpedThread extends Thread {
 		
 		onRun();
 		
-		if (running && !cancelled) {
+		if (running) {
 			running(false);
 		}
 	}
@@ -24,7 +24,7 @@ public abstract class HelpedThread extends Thread {
 	private void running(boolean state) {
 		running = state;
 		
-		if (!state) {
+		if (!state && !cancelled) {
 			onFinished();
 		}
 	}
