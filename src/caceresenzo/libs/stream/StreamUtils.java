@@ -3,6 +3,7 @@ package caceresenzo.libs.stream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -162,23 +163,33 @@ public class StreamUtils {
 		return buffer.toByteArray();
 	}
 	
-	public static void closeOutputStream(OutputStream stream) throws IOException {
+	public static void closeOutputStream(OutputStream stream) {
 		try {
 			if (stream != null) {
 				stream.close();
 			}
 		} catch (IOException exception) {
-			throw new IOException(exception);
+			;
 		}
 	}
 	
-	public static void closeInputStream(InputStream stream) throws IOException {
+	public static void closeInputStream(InputStream stream) {
 		try {
 			if (stream != null) {
 				stream.close();
 			}
 		} catch (IOException exception) {
-			throw new IOException(exception);
+			;
+		}
+	}
+	
+	public static void close(Closeable closeable) {
+		try {
+			if (closeable != null) {
+				closeable.close();
+			}
+		} catch (IOException exception) {
+			;
 		}
 	}
 	
