@@ -53,7 +53,7 @@ public class Downloader {
 		}
 	}
 	
-	public static int getFileSize(String url) throws IOException {
+	public static long getFileSize(String url) throws IOException {
 		URL webpage = new URL(url);
 		URLConnection urlConnection = webpage.openConnection();
 		return urlConnection.getContentLength();
