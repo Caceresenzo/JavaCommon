@@ -11,7 +11,6 @@ import java.util.Date;
  * System.out.println(timer); // prints time elapsed since object was created.
  * </pre>
  */
-
 public class InstructionTimer {
 	private Date start;
 	
@@ -27,11 +26,8 @@ public class InstructionTimer {
 	 * 
 	 * @return Number of milliseconds since timer was started.
 	 */
-	public long getTime() {
-		Date now = new Date();
-		long millis = now.getTime() - start.getTime();
-		
-		return millis;
+	public long getTime() {		
+		return new Date().getTime() - start.getTime();
 	}
 	
 	/**
@@ -58,25 +54,32 @@ public class InstructionTimer {
 		long seconds = millis / 1000;
 		millis -= seconds * 1000;
 		
-		StringBuffer time = new StringBuffer();
+		StringBuilder time = new StringBuilder();
+		
 		if (hours > 0) {
 			time.append(hours + ":");
 		}
+		
 		if (hours > 0 && minutes < 10) {
 			time.append("0");
 		}
+		
 		time.append(minutes + ":");
+		
 		if (seconds < 10) {
 			time.append("0");
 		}
-		time.append(seconds);
-		time.append(".");
+		
+		time.append(seconds).append(".");
+		
 		if (millis < 100) {
 			time.append("0");
 		}
+		
 		if (millis < 10) {
 			time.append("0");
 		}
+		
 		time.append(millis);
 		
 		return time.toString();

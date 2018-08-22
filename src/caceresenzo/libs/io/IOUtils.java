@@ -11,7 +11,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
 public final class IOUtils {
-
+	
 	public static OutputStream copy(InputStream inputStream, OutputStream outputStream) throws IOException {
 		int i = 0;
 		byte[] buffer = new byte[65565];
@@ -20,15 +20,15 @@ public final class IOUtils {
 		}
 		return outputStream;
 	}
-
+	
 	public static OutputStream copy(InputStream inputStream, String output) throws FileNotFoundException, IOException {
 		return copy(inputStream, new BufferedOutputStream(new FileOutputStream(output)));
 	}
-
+	
 	public static String readString(InputStream in, String charset) throws UnsupportedEncodingException, IOException {
 		return new String(read(in), charset);
 	}
-
+	
 	public static byte[] read(InputStream inputStream) throws IOException {
 		byte[] buffer = new byte[65565];
 		ByteArrayOutputStream ous = new ByteArrayOutputStream(buffer.length);
@@ -39,7 +39,7 @@ public final class IOUtils {
 		ous.close();
 		return ous.toByteArray();
 	}
-
+	
 	public static void deleteFolderContents(File folder) {
 		File[] files = folder.listFiles();
 		if (files != null) {
@@ -53,4 +53,5 @@ public final class IOUtils {
 			}
 		}
 	}
+	
 }

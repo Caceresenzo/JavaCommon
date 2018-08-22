@@ -2,6 +2,8 @@ package caceresenzo.libs.string;
 
 /**
  * This class alphabetizes strings.
+ * 
+ * @author Enzo CACERES
  */
 public class Alphabetizer {
 	
@@ -28,15 +30,17 @@ public class Alphabetizer {
 		} else if (string2 == null) {
 			return +1;
 		}
-		int length1 = string1.length();
-		int length2 = string2.length();
-		int length = Math.min(length1, length2);
+		
+		int length1 = string1.length(), length2 = string2.length(), length = Math.min(length1, length2);
+		
 		for (int i = 0; i < length; i++) {
 			int comparison = compare(string1.charAt(i), string2.charAt(i));
+			
 			if (comparison != 0) {
 				return comparison;
 			}
 		}
+		
 		if (length1 < length2) {
 			return -1;
 		} else if (length1 > length2) {
@@ -53,9 +57,11 @@ public class Alphabetizer {
 		if (65 <= char1 && char1 <= 91) {
 			char1 += 32;
 		}
+		
 		if (65 <= char2 && char2 <= 91) {
 			char2 += 32;
 		}
+		
 		if (char1 < char2) {
 			return -1;
 		} else if (char1 > char2) {

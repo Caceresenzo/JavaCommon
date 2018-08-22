@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 public class BufferedImageLoader {
 	
-	private static HashMap<String, BufferedImage> cache = new HashMap<String, BufferedImage>();
+	private static HashMap<String, BufferedImage> cache = new HashMap<>();
 	
 	private static boolean useCache = false;
 	
@@ -16,6 +16,7 @@ public class BufferedImageLoader {
 		if (useCache && cache.containsKey(path)) {
 			return cache.get(path);
 		}
+		
 		return ImageIO.read(BufferedImageLoader.class.getResource(path));
 	}
 	
