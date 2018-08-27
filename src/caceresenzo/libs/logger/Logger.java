@@ -18,9 +18,13 @@ public class Logger {
 	protected static SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss"), fileDateFormat = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
 	
 	protected static int maxLength = 10, staticLength = 1;
-	protected static boolean useStaticLength = false, useClassOnly = true, addMethodName = false, exceptionFileReport = true;
+	protected static boolean killed = false, useStaticLength = false, useClassOnly = true, addMethodName = false, exceptionFileReport = true;
 	
 	private static void log(LogLevel level, Object format, Object... args) {
+		if (killed) {
+			return;
+		}
+		
 		int depth = 3; // Thread.currentThread().getStackTrace().length - 1;
 		String stackTrace = "NULL";
 		if (useClassOnly) {
@@ -188,6 +192,10 @@ public class Logger {
 	public static void resetStaticLength() {
 		useStaticLength = false;
 		staticLength = 1;
+	}
+	
+	public static void kill(boolean kill) {
+		killed = kill;
 	}
 	
 	public static void setClassOnly(boolean classOnly) {
