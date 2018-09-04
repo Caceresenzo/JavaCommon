@@ -157,4 +157,12 @@ public abstract class HelpedThread extends Thread {
 	 */
 	protected abstract void onCancelled();
 	
+	public static class HelpedThreadException extends RuntimeException {
+		
+	}
+	
+	public static class HelpedThreadCancelledException extends HelpedThreadException {
+		
+	}
+	
 }
