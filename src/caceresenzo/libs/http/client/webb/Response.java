@@ -180,7 +180,7 @@ public class Response<T> {
 	public HttpURLConnection getConnection() {
 		return connection;
 	}
-
+	
 	public void setConnection(HttpURLConnection connection) {
 		this.connection = connection;
 	}
@@ -194,17 +194,22 @@ public class Response<T> {
 			throw new WebbException("Request failed: " + getStatusCode() + " " + getResponseMessage(), (Response<?>) this);
 		}
 	}
-
+	
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
-
+	
 	public void setResponseMessage(String responseMessage) {
 		this.responseMessage = responseMessage;
 	}
-
+	
 	public void setErrorBody(Object errorBody) {
 		this.errorBody = errorBody;
+	}
+	
+	@Override
+	public String toString() {
+		return "Response [request=" + request + ", statusCode=" + statusCode + ", responseMessage=" + responseMessage + ", body=" + body + ", errorBody=" + errorBody + ", connection=" + connection + "]";
 	}
 	
 }

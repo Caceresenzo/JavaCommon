@@ -10,7 +10,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Iterator;
+import java.util.List;
 
+import caceresenzo.libs.empty.EmptyUtils;
 import caceresenzo.libs.stream.StreamUtils;
 
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
@@ -127,6 +130,22 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		}
 		
 		return true;
+	}
+	
+	public static String join(List<?> list, String delimiter) {
+		if (!EmptyUtils.validate(list)) {
+			return "";
+		}
+		
+		StringBuilder builder = new StringBuilder();
+		
+		Iterator<?> iterator = list.iterator();
+		
+		while (iterator.hasNext()) {
+			builder.append(String.valueOf(iterator.next())).append(iterator.hasNext() ? delimiter : "");
+		}
+		
+		return builder.toString();
 	}
 	
 }

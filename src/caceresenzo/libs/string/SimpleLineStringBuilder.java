@@ -17,12 +17,14 @@ public class SimpleLineStringBuilder {
 		this.newLineChar = newLineChar;
 	}
 	
-	public void append(Object value) {
+	public SimpleLineStringBuilder append(Object value) {
 		this.string += String.valueOf(value);
+		
+		return this;
 	}
 	
-	public void appendln(Object value) {
-		this.string += String.valueOf(value) + newLineChar;
+	public SimpleLineStringBuilder appendln(Object value) {
+		return append(String.valueOf(value) + newLineChar);
 	}
 	
 	public void appendln() {

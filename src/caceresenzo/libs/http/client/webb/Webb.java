@@ -15,8 +15,12 @@ import java.util.zip.GZIPOutputStream;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
 
+import caceresenzo.libs.http.TrustAnyTrustManager;
 import caceresenzo.libs.json.JsonArray;
 import caceresenzo.libs.json.JsonObject;
 
@@ -52,7 +56,19 @@ public class Webb {
 	HostnameVerifier hostnameVerifier;
 	RetryManager retryManager;
 	
-	protected Webb() {
+	private boolean disableSslVerification;
+	
+	protected Webb(boolean disableSslVerification) {
+		this.disableSslVerification = disableSslVerification;
+	}
+	
+	/**
+	 * Create an instance which can be reused for multiple requests in the same Thread.
+	 * 
+	 * @return the created instance.
+	 */
+	public static Webb create(boolean disableSslVerification) {
+		return new Webb(disableSslVerification);
 	}
 	
 	/**
@@ -61,7 +77,7 @@ public class Webb {
 	 * @return the created instance.
 	 */
 	public static Webb create() {
-		return new Webb();
+		return create(false);
 	}
 	
 	/**
@@ -324,6 +340,19 @@ public class Webb {
 			}
 			URL apiUrl = new URL(uri);
 			connection = (HttpURLConnection) apiUrl.openConnection();
+			
+			if (disableSslVerification) {
+				SSLContext sc = SSLContext.getInstance("SSL");
+				sc.init(null, new TrustManager[] { new TrustAnyTrustManager() }, new java.security.SecureRandom());
+				
+				((HttpsURLConnection) connection).setSSLSocketFactory(sc.getSocketFactory());
+				
+				((HttpsURLConnection) connection).setHostnameVerifier(new HostnameVerifier() {
+					public boolean verify(String hostname, SSLSession session) {
+						return true;
+					}
+				});
+			}
 			
 			prepareSslConnection(connection);
 			connection.setRequestMethod(request.getMethod().name());

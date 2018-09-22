@@ -28,7 +28,7 @@ public class FileUtils {
 		return getExtension(file.getName());
 	}
 	
-	public static String remplaceIllegalChar(String name) {
+	public static String replaceIllegalChar(String name) {
 		return name.replaceAll("[\\\\\\\\/:*?\\\"<>|]", "_");
 	}
 	
@@ -38,7 +38,7 @@ public class FileUtils {
 	}
 	
 	public static void writeStringToFile(String string, File file) throws IOException {
-		InputStream stream = new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8.name()));
+		InputStream stream = new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8));
 		writeStreamToFile(stream, file);
 	}
 	
