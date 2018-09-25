@@ -5,7 +5,7 @@ package caceresenzo.libs.thread;
  * 
  * @author Enzo CACERES
  */
-public abstract class HelpedThread extends Thread {
+public abstract class AbstractHelpedThread extends Thread {
 	
 	private boolean running, cancelled, locked;
 	
@@ -43,7 +43,7 @@ public abstract class HelpedThread extends Thread {
 	 *            New state
 	 * @return Itself
 	 */
-	private HelpedThread running(boolean state) {
+	private AbstractHelpedThread running(boolean state) {
 		running = state;
 		
 		if (!state && !cancelled) {
@@ -67,7 +67,7 @@ public abstract class HelpedThread extends Thread {
 	 * 
 	 * @return Itself
 	 */
-	public HelpedThread cancel() {
+	public AbstractHelpedThread cancel() {
 		cancelled = true;
 		running = false;
 		
@@ -92,7 +92,7 @@ public abstract class HelpedThread extends Thread {
 	 *            New locked state
 	 * @return Itself
 	 */
-	public HelpedThread setLocked(boolean locked) {
+	public AbstractHelpedThread setLocked(boolean locked) {
 		this.locked = locked;
 		return this;
 	}
@@ -102,7 +102,7 @@ public abstract class HelpedThread extends Thread {
 	 * 
 	 * @return Itself
 	 */
-	public HelpedThread lock() {
+	public AbstractHelpedThread lock() {
 		setLocked(true);
 		
 		return this;
@@ -113,7 +113,7 @@ public abstract class HelpedThread extends Thread {
 	 * 
 	 * @return Itself
 	 */
-	public HelpedThread unlock() {
+	public AbstractHelpedThread unlock() {
 		setLocked(false);
 		
 		return this;
@@ -128,7 +128,7 @@ public abstract class HelpedThread extends Thread {
 	 *            Time between the locked state will be check
 	 * @return Itself
 	 */
-	public HelpedThread waitUntilUnlock(long timeBewteenCheck) {
+	public AbstractHelpedThread waitUntilUnlock(long timeBewteenCheck) {
 		while (locked && !cancelled && running) {
 			ThreadUtils.sleep(timeBewteenCheck);
 		}
@@ -143,7 +143,7 @@ public abstract class HelpedThread extends Thread {
 	 * 
 	 * @return Itself
 	 */
-	public HelpedThread waitUntilUnlock() {
+	public AbstractHelpedThread waitUntilUnlock() {
 		return waitUntilUnlock(50);
 	}
 	
