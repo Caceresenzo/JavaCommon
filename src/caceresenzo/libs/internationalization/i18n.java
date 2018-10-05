@@ -60,6 +60,14 @@ public class i18n {
 		return String.format(getTranslationInstance(selectedLanguage).getString(key), args);
 	}
 	
+	public static String string(String key) {
+		return getString(key);
+	}
+	
+	public static String string(String key, Object... args) {
+		return getString(key, args);
+	}
+	
 	public static void setSelectedLanguage(String language) {
 		selectedLanguage = language;
 	}

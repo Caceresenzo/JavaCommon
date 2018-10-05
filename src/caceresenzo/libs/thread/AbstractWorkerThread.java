@@ -5,7 +5,7 @@ package caceresenzo.libs.thread;
  * 
  * @author Enzo CACERES
  */
-public abstract class AbstractHelpedThread extends Thread {
+public abstract class AbstractWorkerThread extends Thread {
 	
 	private boolean running, cancelled, locked;
 	
@@ -13,7 +13,7 @@ public abstract class AbstractHelpedThread extends Thread {
 	public void run() {
 		running(true);
 		
-		onRun();
+		execute();
 		
 		if (running) {
 			running(false);
@@ -23,7 +23,7 @@ public abstract class AbstractHelpedThread extends Thread {
 	/**
 	 * Abstract function called when the thread start
 	 */
-	protected abstract void onRun();
+	protected abstract void execute();
 	
 	/**
 	 * Tell you if the thread is running or not
@@ -43,7 +43,7 @@ public abstract class AbstractHelpedThread extends Thread {
 	 *            New state
 	 * @return Itself
 	 */
-	private AbstractHelpedThread running(boolean state) {
+	private AbstractWorkerThread running(boolean state) {
 		running = state;
 		
 		if (!state && !cancelled) {
@@ -67,7 +67,7 @@ public abstract class AbstractHelpedThread extends Thread {
 	 * 
 	 * @return Itself
 	 */
-	public AbstractHelpedThread cancel() {
+	public AbstractWorkerThread cancel() {
 		cancelled = true;
 		running = false;
 		
@@ -92,7 +92,7 @@ public abstract class AbstractHelpedThread extends Thread {
 	 *            New locked state
 	 * @return Itself
 	 */
-	public AbstractHelpedThread setLocked(boolean locked) {
+	public AbstractWorkerThread setLocked(boolean locked) {
 		this.locked = locked;
 		return this;
 	}
@@ -102,7 +102,7 @@ public abstract class AbstractHelpedThread extends Thread {
 	 * 
 	 * @return Itself
 	 */
-	public AbstractHelpedThread lock() {
+	public AbstractWorkerThread lock() {
 		setLocked(true);
 		
 		return this;
@@ -113,7 +113,7 @@ public abstract class AbstractHelpedThread extends Thread {
 	 * 
 	 * @return Itself
 	 */
-	public AbstractHelpedThread unlock() {
+	public AbstractWorkerThread unlock() {
 		setLocked(false);
 		
 		return this;
@@ -128,7 +128,7 @@ public abstract class AbstractHelpedThread extends Thread {
 	 *            Time between the locked state will be check
 	 * @return Itself
 	 */
-	public AbstractHelpedThread waitUntilUnlock(long timeBewteenCheck) {
+	public AbstractWorkerThread waitUntilUnlock(long timeBewteenCheck) {
 		while (locked && !cancelled && running) {
 			ThreadUtils.sleep(timeBewteenCheck);
 		}
@@ -143,7 +143,7 @@ public abstract class AbstractHelpedThread extends Thread {
 	 * 
 	 * @return Itself
 	 */
-	public AbstractHelpedThread waitUntilUnlock() {
+	public AbstractWorkerThread waitUntilUnlock() {
 		return waitUntilUnlock(50);
 	}
 	

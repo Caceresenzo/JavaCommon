@@ -56,6 +56,17 @@ public class JsonObject extends HashMap<Object, Object> implements Map<Object, O
 		return getJsonObject(key, null);
 	}
 	
+	public JsonArray getJsonArray(String key, JsonArray defaultValue) {
+		if (get(key) instanceof JsonArray) {
+			return (JsonArray) get(key);
+		}
+		return defaultValue;
+	}
+	
+	public JsonArray getJsonArray(String key) {
+		return getJsonArray(key, null);
+	}
+	
 	public static void writeJsonString(Map<?, ?> map, Writer out) throws IOException {
 		if (map == null) {
 			out.write("null");

@@ -1,11 +1,11 @@
 package caceresenzo.libs.thread.implementations;
 
-import caceresenzo.libs.thread.AbstractHelpedThread;
+import caceresenzo.libs.thread.AbstractWorkerThread;
 
-public class HelpedThread extends AbstractHelpedThread {
+public class WorkerThread extends AbstractWorkerThread {
 	
 	@Override
-	protected void onRun() {
+	protected void execute() {
 		;
 	}
 	
@@ -19,7 +19,7 @@ public class HelpedThread extends AbstractHelpedThread {
 		;
 	}
 	
-	public static boolean isWorkerFree(AbstractHelpedThread helpedThread) {
+	public static boolean isWorkerFree(AbstractWorkerThread helpedThread) {
 		return (helpedThread == null || !helpedThread.isRunning());
 	}
 	

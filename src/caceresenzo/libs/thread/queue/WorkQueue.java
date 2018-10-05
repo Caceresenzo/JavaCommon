@@ -73,7 +73,7 @@ public class WorkQueue {
 		threads = new ArrayList<Thread>();
 		taskKeyToLatch = new ConcurrentHashMap<Object, CountDownLatch>();
 		for (int i = 0; i < numberThreads; ++i) {
-			Thread thread = new WorkerThread(workQueue);
+			Thread thread = new QueueWorkerThread(workQueue);
 			threads.add(thread);
 			thread.start();
 		}

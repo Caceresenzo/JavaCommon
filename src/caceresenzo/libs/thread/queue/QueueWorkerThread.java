@@ -7,7 +7,7 @@ import java.util.concurrent.BlockingQueue;
 /**
  * A daemon thread that continuously dequeues {@code Runnable} instances from a queue and executes them. This class is intended to be used with a {@link java.util.concurrent.Semaphore Semaphore}, whereby work is added the to the queue and the semaphore indicates when processing has finished.
  */
-class WorkerThread extends Thread {
+class QueueWorkerThread extends Thread {
 	
 	/**
 	 * A static variable to indicate which instance of the class the current thread is in its name.
@@ -32,7 +32,7 @@ class WorkerThread extends Thread {
 	/**
 	 * Creates a thread that continuously dequeues from the {@code workQueue} at once and excutes each item.
 	 */
-	public WorkerThread(BlockingQueue<Runnable> workQueue) {
+	public QueueWorkerThread(BlockingQueue<Runnable> workQueue) {
 		this(workQueue, 1);
 	}
 	
@@ -42,12 +42,12 @@ class WorkerThread extends Thread {
 	 * @param threadLocalItems
 	 *            the number of items this thread should dequeue from the work queue at one time. Setting this value too high can result in a loss of concurrency; setting it too low can result in high contention on the work queue if the time per task is also low.
 	 */
-	public WorkerThread(BlockingQueue<Runnable> workQueue, int threadLocalItems) {
+	public QueueWorkerThread(BlockingQueue<Runnable> workQueue, int threadLocalItems) {
 		this.workQueue = workQueue;
 		this.threadLocalItems = threadLocalItems;
 		internalQueue = new ArrayDeque<Runnable>();
 		setDaemon(true);
-		synchronized (WorkerThread.class) {
+		synchronized (QueueWorkerThread.class) {
 			setName("WorkerThread-" + (threadInstanceCount++));
 		}
 	}

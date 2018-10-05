@@ -9,7 +9,7 @@ public class MD5 {
 		MessageDigest digest = MessageDigest.getInstance("MD5");
 		digest.update(content.getBytes());
 		final byte byteData[] = digest.digest();
-
+		
 		final StringBuffer hexString = new StringBuffer();
 		for (int i = 0; i < byteData.length; i++) {
 			String hex = Integer.toHexString(0xff & byteData[i]);
@@ -20,5 +20,13 @@ public class MD5 {
 		}
 		return hexString.toString();
 	}
-
+	
+	public static String silentMd5(String source) {
+		try {
+			return generateStringMD5(source);
+		} catch (Exception exception) {
+			throw new IllegalStateException(exception);
+		}
+	}
+	
 }
