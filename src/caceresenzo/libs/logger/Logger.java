@@ -18,7 +18,7 @@ public class Logger {
 	protected static SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss"), fileDateFormat = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
 	
 	protected static int maxLength = 10, staticLength = 1;
-	protected static boolean killed = false, useStaticLength = false, useClassOnly = true, addMethodName = false, exceptionFileReport = true;
+	protected static boolean killed = false, useStaticLength = false, useClassOnly = true, addMethodName = false, exceptionFileReport = false;
 	
 	private static void log(LogLevel level, Object format, Object... args) {
 		if (killed) {

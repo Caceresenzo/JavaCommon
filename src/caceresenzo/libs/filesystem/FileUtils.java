@@ -32,6 +32,25 @@ public class FileUtils {
 		return name.replaceAll("[\\\\\\\\/:*?\\\"<>|]", "_");
 	}
 	
+	public static boolean forceFolderCreation(File file) throws IOException {
+		if (file.isDirectory() && file.exists()) {
+			return true;
+		}
+		
+		if (file.isFile()) {
+			if (!file.delete()) {
+				throw new IOException("Folder is a file that can't be deleted, can't continue.");
+			}
+		}
+		
+		if (!file.exists()) {
+			file.mkdirs();
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public static void writeStringToFile(String string, String filename) throws IOException {
 		File file = new File(filename);
 		writeStringToFile(string, file);

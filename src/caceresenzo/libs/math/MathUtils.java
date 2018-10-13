@@ -8,10 +8,18 @@ public class MathUtils {
 	}
 	
 	public static float pourcent(int value) {
+		return pourcent((long) value, 100);
+	}
+	
+	public static float pourcent(long value) {
 		return pourcent(value, 100);
 	}
 	
 	public static float pourcent(int value, int max) {
+		return pourcent((long) value, (long) max);
+	}
+	
+	public static float pourcent(long value, long max) {
 		return (value * 100.0f) / max;
 	}
 	
