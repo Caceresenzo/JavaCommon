@@ -32,34 +32,39 @@ public class FileUtils {
 		return name.replaceAll("[\\\\\\\\/:*?\\\"<>|]", "_");
 	}
 	
-	public static boolean forceFolderCreation(File file) throws IOException {
-		return forceFileCreation(file, true);
-	}
-	
-	public static boolean forceFileCreation(File file) throws IOException {
-		return forceFileCreation(file, false);
-	}
-	
-	private static boolean forceFileCreation(File file, boolean folder) throws IOException {
-		boolean validType = (file.isDirectory() && folder) || (!file.isDirectory() && !folder);
-		
-		if (file.exists() && validType) {
+	public static boolean forceDirectoryCreation(File file) throws IOException {
+		if (file.exists() && file.isDirectory()) {
 			return true;
 		}
 		
-		if (!validType) {
+		if (file.exists()) {
 			if (!file.delete()) {
-				throw new IOException((folder ? "Folder" : "File") + " is a " + (folder ? "file" : "directory") + " that can't be deleted, can't continue.");
+				throw new IOException("The directory is a file that can't be deleted. (" + file.getAbsolutePath() + ")");
 			}
 		}
 		
 		if (!file.exists()) {
-			if (folder) {
-				file.mkdirs();
-			} else {
-				file.getAbsoluteFile().getParentFile().mkdirs();
-				file.createNewFile();
+			file.mkdirs();
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public static boolean forceFileCreation(File file) throws IOException {
+		if (file.exists() && file.isFile()) {
+			return true;
+		}
+		
+		if (file.exists()) {
+			if (!file.delete()) {
+				throw new IOException("The file is a directory that can't be deleted. (" + file.getAbsolutePath() + ")");
 			}
+		}
+		
+		if (!file.exists()) {
+			file.getAbsoluteFile().getParentFile().mkdirs();
+			file.createNewFile();
 			return true;
 		}
 		
