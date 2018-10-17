@@ -33,18 +33,33 @@ public class FileUtils {
 	}
 	
 	public static boolean forceFolderCreation(File file) throws IOException {
-		if (file.isDirectory() && file.exists()) {
+		return forceFileCreation(file, true);
+	}
+	
+	public static boolean forceFileCreation(File file) throws IOException {
+		return forceFileCreation(file, false);
+	}
+	
+	private static boolean forceFileCreation(File file, boolean folder) throws IOException {
+		boolean validType = (file.isDirectory() && folder) || (!file.isDirectory() && !folder);
+		
+		if (file.exists() && validType) {
 			return true;
 		}
 		
-		if (file.isFile()) {
+		if (!validType) {
 			if (!file.delete()) {
-				throw new IOException("Folder is a file that can't be deleted, can't continue.");
+				throw new IOException((folder ? "Folder" : "File") + " is a " + (folder ? "file" : "directory") + " that can't be deleted, can't continue.");
 			}
 		}
 		
 		if (!file.exists()) {
-			file.mkdirs();
+			if (folder) {
+				file.mkdirs();
+			} else {
+				file.getAbsoluteFile().getParentFile().mkdirs();
+				file.createNewFile();
+			}
 			return true;
 		}
 		

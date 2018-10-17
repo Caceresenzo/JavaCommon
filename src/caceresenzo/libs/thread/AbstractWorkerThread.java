@@ -37,7 +37,7 @@ public abstract class AbstractWorkerThread extends Thread {
 	/**
 	 * Set a new running state for this thread
 	 * 
-	 * If false, and is not already cancelled, wil call {@link #onFinished()}
+	 * If false, and is not already cancelled, wil call {@link #done()}
 	 * 
 	 * @param state
 	 *            New state
@@ -47,7 +47,7 @@ public abstract class AbstractWorkerThread extends Thread {
 		running = state;
 		
 		if (!state && !cancelled) {
-			onFinished();
+			done();
 		}
 		
 		return this;
@@ -63,15 +63,15 @@ public abstract class AbstractWorkerThread extends Thread {
 	}
 	
 	/**
-	 * Cancel a thread, that will not stop the execution by itself, but il will call {@link #onCancelled()}
+	 * Cancel a thread, that will not stop the execution by itself, but il will call {@link #cancel()}
 	 * 
 	 * @return Itself
 	 */
-	public AbstractWorkerThread cancel() {
+	public AbstractWorkerThread terminate() {
 		cancelled = true;
 		running = false;
 		
-		onCancelled();
+		cancel();
 		
 		return this;
 	}
@@ -150,12 +150,12 @@ public abstract class AbstractWorkerThread extends Thread {
 	/**
 	 * Abstract function called when the thread has finished, and has not been cancel
 	 */
-	protected abstract void onFinished();
+	protected abstract void done();
 	
 	/**
 	 * Abstract function called when a thread has been cancelled
 	 */
-	protected abstract void onCancelled();
+	protected abstract void cancel();
 	
 	public static class HelpedThreadException extends RuntimeException {
 		

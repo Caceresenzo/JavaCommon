@@ -10,12 +10,12 @@ public class WorkerThread extends AbstractWorkerThread {
 	}
 	
 	@Override
-	protected void onFinished() {
+	protected void done() {
 		;
 	}
 	
 	@Override
-	protected void onCancelled() {
+	protected void cancel() {
 		;
 	}
 	

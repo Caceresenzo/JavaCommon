@@ -1,9 +1,30 @@
 package caceresenzo.libs.reflection;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ReflectionUtils {
+	
+	public static Set<Field> findFields(Class<?> sourceClass, Class<? extends Annotation> annotationClass) {
+		Set<Field> set = new HashSet<>();
+		
+		Class<?> clazz = sourceClass;
+		while (clazz != null) {
+			for (Field field : clazz.getDeclaredFields()) {
+				if (field.isAnnotationPresent(annotationClass)) {
+					set.add(field);
+				}
+			}
+			
+			clazz = clazz.getSuperclass();
+		}
+		
+		return set;
+	}
 	
 	@SuppressWarnings("all")
 	public static Object reflectMethod(Class<?> clazz, String method, Object instance, Class<?>[] parametersClass, Object... parameters) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
