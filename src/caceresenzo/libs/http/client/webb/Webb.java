@@ -23,7 +23,6 @@ import javax.net.ssl.TrustManager;
 import caceresenzo.libs.http.TrustAnyTrustManager;
 import caceresenzo.libs.json.JsonArray;
 import caceresenzo.libs.json.JsonObject;
-import caceresenzo.libs.logger.Logger;
 
 /**
  * Lightweight Java HTTP-Client for calling Json REST-Services (especially for Android).

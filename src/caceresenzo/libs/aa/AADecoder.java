@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
  * 
  * Source: https://gist.github.com/codebymikey/f239f2e8864cc1771354681af11183ca
  */
+@SuppressWarnings("all")
 public class AADecoder {
 	private static final String HEX_HASH_MARKER = "(oﾟｰﾟo)+ ";
 	private static final String BLOCK_START_MARKER = "(ﾟДﾟ)[ﾟεﾟ]+";
