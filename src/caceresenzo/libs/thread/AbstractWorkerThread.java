@@ -11,6 +11,8 @@ public abstract class AbstractWorkerThread extends Thread {
 	
 	@Override
 	public void run() {
+		initialize();
+		
 		running(true);
 		
 		execute();
@@ -21,9 +23,19 @@ public abstract class AbstractWorkerThread extends Thread {
 	}
 	
 	/**
+	 * Abstract function called before the thread start
+	 */
+	protected abstract void initialize();
+	
+	/**
 	 * Abstract function called when the thread start
 	 */
 	protected abstract void execute();
+	
+	/**
+	 * Abstract function called when the thread notifify a progress update
+	 */
+	protected abstract void publishProgress(int max, int value);
 	
 	/**
 	 * Tell you if the thread is running or not
@@ -157,11 +169,11 @@ public abstract class AbstractWorkerThread extends Thread {
 	 */
 	protected abstract void cancel();
 	
-	public static class HelpedThreadException extends RuntimeException {
+	public static class WorkerThreadException extends RuntimeException {
 		
 	}
 	
-	public static class HelpedThreadCancelledException extends HelpedThreadException {
+	public static class WorkerThreadCancelledException extends WorkerThreadException {
 		
 	}
 	
