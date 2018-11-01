@@ -113,6 +113,7 @@ public class Downloader {
 		URL webpage = new URL(address);
 		HttpURLConnection urlConnection = (HttpURLConnection) webpage.openConnection();
 		urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36");
+		
 		if (params != null) {
 			for (Entry<String, String> entry : params.entrySet()) {
 				if (entry.getKey().equals("setRequestMethod")) {
