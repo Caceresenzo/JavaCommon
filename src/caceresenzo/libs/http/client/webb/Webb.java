@@ -341,7 +341,7 @@ public class Webb {
 			URL apiUrl = new URL(uri);
 			connection = (HttpURLConnection) apiUrl.openConnection();
 			
-			if (disableSslVerification) {
+			if (disableSslVerification && connection instanceof HttpsURLConnection) {
 				SSLContext sc = SSLContext.getInstance("SSL");
 				sc.init(null, new TrustManager[] { new TrustAnyTrustManager() }, new java.security.SecureRandom());
 				
