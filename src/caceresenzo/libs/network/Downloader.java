@@ -7,12 +7,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import caceresenzo.libs.logger.Logger;
 
 public class Downloader {
 	
@@ -107,15 +110,16 @@ public class Downloader {
 	/**
 	 * Get a given page from an URL address
 	 */
-	public static String webget(String address, Map<String, String> params, Charset charset) throws IOException {
+	public static String webget(String address, Map<String, String> headers, Charset charset) throws IOException {
 		String result = "";
 		
 		URL webpage = new URL(address);
 		HttpURLConnection urlConnection = (HttpURLConnection) webpage.openConnection();
 		urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36");
+		urlConnection.setRequestProperty("Accept-Charset", charset.displayName());
 		
-		if (params != null) {
-			for (Entry<String, String> entry : params.entrySet()) {
+		if (headers != null) {
+			for (Entry<String, String> entry : headers.entrySet()) {
 				if (entry.getKey().equals("setRequestMethod")) {
 					urlConnection.setRequestMethod(entry.getValue());
 				} else {
