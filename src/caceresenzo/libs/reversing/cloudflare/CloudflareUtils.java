@@ -1,4 +1,4 @@
-package caceresenzo.libs.cryptography;
+package caceresenzo.libs.reversing.cloudflare;
 
 public class CloudflareUtils {
 	
