@@ -5,6 +5,7 @@ package caceresenzo.libs.http.client.webb;
  */
 public class WebbConstante {
 	public static final String DEFAULT_USER_AGENT = "com.goebl.david.Webb/1.0";
+	public static final String USER_AGENT_CHROME = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";
 	public static final String APPLICATION_FORM = "application/x-www-form-urlencoded";
 	public static final String APPLICATION_JSON = "application/json";
 	public static final String APPLICATION_BINARY = "application/octet-stream";
