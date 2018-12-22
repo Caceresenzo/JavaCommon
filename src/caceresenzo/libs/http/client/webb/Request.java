@@ -142,6 +142,24 @@ public class Request {
 	}
 	
 	/**
+	 * Use the default User-Agent {@link WebbConstante#DEFAULT_USER_AGENT}
+	 * 
+	 * @return <code>this</code> for method chaining (fluent API)
+	 */
+	public Request defaultUserAgent() {
+		return header(WebbConstante.HDR_USER_AGENT, WebbConstante.DEFAULT_USER_AGENT);
+	}
+	
+	/**
+	 * Use Chrome User-Agent {@link WebbConstante#USER_AGENT_CHROME}
+	 * 
+	 * @return <code>this</code> for method chaining (fluent API)
+	 */
+	public Request chromeUserAgent() {
+		return header(WebbConstante.HDR_USER_AGENT, WebbConstante.USER_AGENT_CHROME);
+	}
+	
+	/**
 	 * Set (or overwrite) a HTTP header value. <br>
 	 * Setting a header this way has the highest precedence and overrides a header value set on a {@link Webb} instance ({@link Webb#setDefaultHeader(String, Object)}) or a global header ({@link Webb#setGlobalHeader(String, Object)}). <br>
 	 * Using <code>null</code> or empty String is not allowed for name and value.
