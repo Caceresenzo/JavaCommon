@@ -19,6 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import caceresenzo.libs.http.client.webb.Webb;
+import caceresenzo.libs.logger.Logger;
 import caceresenzo.libs.scripts.javascript.AbstractJavaScriptExecutor;
 import caceresenzo.libs.string.StringUtils;
 
@@ -274,8 +275,12 @@ public class CloudflareBypass implements Serializable {
 			sb.append("a=a.toString();");
 			
 			AbstractJavaScriptExecutor executor = AbstractJavaScriptExecutor.get();
+			String result = String.valueOf(executor.eval(sb.toString()));
 			
-			a = Double.valueOf(String.valueOf(executor.eval(sb.toString())));
+			a = Double.valueOf(result);
+			
+			Logger.info(result);
+			Logger.info(a);
 			
 			List<String> fixNum = regex(string, "toFixed\\((.+?)\\)");
 			if (fixNum != null) {
