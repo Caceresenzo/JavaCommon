@@ -89,6 +89,22 @@ public abstract class AbstractWorkerThread extends Thread {
 	}
 	
 	/**
+	 * Force this worker to stop.
+	 * 
+	 * @return If the thread successfully stop.
+	 */
+	@SuppressWarnings("deprecation")
+	public boolean forceDestroy() {
+		try {
+			stop();
+		} catch (Exception exception) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/**
 	 * Tell you if the thread has been locked.
 	 * 
 	 * @return Locked state.
