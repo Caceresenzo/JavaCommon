@@ -51,52 +51,52 @@ public class RssFeedParser {
 								isFeedHeader = false;
 								feed = new Feed(title, link, description, language, copyright, publicationDate);
 							}
-							event = eventReader.nextEvent();
+							// event = eventReader.nextEvent();
 							break;
 						}
-							
+						
 						case PART_TITLE: {
 							title = getCharacterData(event, eventReader);
 							break;
 						}
-							
+						
 						case PART_DESCRIPTION: {
 							description = getCharacterData(event, eventReader);
 							break;
 						}
-							
+						
 						case PART_LINK: {
 							link = getCharacterData(event, eventReader);
 							break;
 						}
-							
+						
 						case PART_GUID: {
 							guid = getCharacterData(event, eventReader);
 							break;
 						}
-							
+						
 						case PART_LANGUAGE: {
 							language = getCharacterData(event, eventReader);
 							break;
 						}
-							
+						
 						case PART_AUTHOR: {
 							author = getCharacterData(event, eventReader);
 							break;
 						}
-							
+						
 						case PART_PUBLICATION_DATE: {
 							publicationDate = getCharacterData(event, eventReader);
 							break;
 						}
-							
+						
 						case PART_COPYRIGHT: {
 							copyright = getCharacterData(event, eventReader);
 							break;
 						}
 					}
 				} else if (event.isEndElement()) {
-					if (event.asEndElement().getName().getLocalPart() == PART_ITEM) {
+					if (PART_ITEM.equals(event.asEndElement().getName().getLocalPart())) {
 						FeedMessage message = new FeedMessage();
 						message.setAuthor(author);
 						message.setDescription(description);
