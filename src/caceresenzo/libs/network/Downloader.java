@@ -132,11 +132,22 @@ public class Downloader {
 		InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charset);
 		BufferedReader in = new BufferedReader(inputStreamReader);
 		
+		boolean interrupted = false;
+		
 		String inputLine;
 		while ((inputLine = in.readLine()) != null) {
+			interrupted = Thread.currentThread().isInterrupted();
+			if (interrupted) {
+				break;
+			}
+			
 			result = result.concat(inputLine);
 		}
 		in.close();
+		
+		if (interrupted) {
+			throw new ThreadDeath();
+		}
 		
 		return result;
 	}

@@ -1,5 +1,7 @@
 package caceresenzo.libs.thread;
 
+import java.lang.reflect.Method;
+
 /**
  * Class more advanced that a simple thread with some useful function.
  * 
@@ -89,16 +91,38 @@ public abstract class AbstractWorkerThread extends Thread {
 	}
 	
 	/**
-	 * Force this worker to stop.
+	 * Called before a {@link #forceStop()}'s killing instruction.
+	 */
+	public abstract void onForcedStop();
+	
+	/**
+	 * Force this worker to stop.<br>
+	 * The function {@link #onForcedStop()} will be called before the stop instruction.
 	 * 
 	 * @return If the thread successfully stop.
 	 */
-	@SuppressWarnings("deprecation")
-	public boolean forceDestroy() {
+	@Deprecated
+	public boolean forceStop() {
 		try {
-			stop();
+			onForcedStop();
 		} catch (Exception exception) {
-			return false;
+			exception.printStackTrace();
+		}
+		
+		try {
+			Method method = Thread.class.getDeclaredMethod("stop0", new Class[] { Object.class });
+			method.setAccessible(true);
+			method.invoke(this, new ThreadDeath());
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			
+			try {
+				stop();
+			} catch (Exception exception2) {
+				exception2.printStackTrace();
+				
+				return false;
+			}
 		}
 		
 		return true;

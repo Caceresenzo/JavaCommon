@@ -5,6 +5,7 @@ import caceresenzo.libs.thread.AbstractWorkerThread;
 public class WorkerThread extends AbstractWorkerThread {
 	
 	private ProgressObserver progressObserver;
+	private boolean shouldStop;
 	
 	@Override
 	protected void initialize() {
@@ -33,6 +34,11 @@ public class WorkerThread extends AbstractWorkerThread {
 		;
 	}
 	
+	@Override
+	public void onForcedStop() {
+		;
+	}
+	
 	public WorkerThread observe(ProgressObserver progressObserver) {
 		this.progressObserver = progressObserver;
 		
@@ -51,6 +57,15 @@ public class WorkerThread extends AbstractWorkerThread {
 		
 		void onProgress(WorkerThread worker, int max, int value);
 		
+	}
+
+	public void shouldStop() {
+		shouldStop = true;
+		interrupt();
+	}
+	
+	public boolean threadShouldStop() {
+		return shouldStop;
 	}
 	
 }
