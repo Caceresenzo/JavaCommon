@@ -23,6 +23,7 @@ import java.util.zip.InflaterInputStream;
 import caceresenzo.libs.json.JsonArray;
 import caceresenzo.libs.json.JsonObject;
 import caceresenzo.libs.json.parser.JsonException;
+import caceresenzo.libs.json.parser.JsonParser;
 
 /**
  * Static utility method and tools for HTTP traffic parsing and encoding.
@@ -82,16 +83,15 @@ public class WebbUtils {
 	 *             in case of error (usually a parsing error due to invalid Json)
 	 */
 	public static JsonObject toJsonObject(byte[] bytes) {
-		// String Json;
-		// try {
-		// Json = new String(bytes, Const.UTF8);
-		// return new JsonObject(Json);
-		// } catch (UnsupportedEncodingException e) {
-		// throw new WebbException(e);
-		// } catch (JsonException e) {
-		// throw new WebbException("payload is not a valid Json object", e);
-		// }
-		return null;
+		String Json;
+		try {
+			Json = new String(bytes, WebbConstante.UTF8);
+			return (JsonObject) new JsonParser().parse(Json);
+		} catch (UnsupportedEncodingException e) {
+			throw new WebbException(e);
+		} catch (JsonException e) {
+			throw new WebbException("payload is not a valid Json object", e);
+		}
 	}
 	
 	/**
@@ -104,16 +104,15 @@ public class WebbUtils {
 	 *             in case of error (usually a parsing error due to invalid Json)
 	 */
 	public static JsonArray toJsonArray(byte[] bytes) {
-		// String Json;
-		// try {
-		// Json = new String(bytes, Const.UTF8);
-		// return new JsonArray(Json);
-		// } catch (UnsupportedEncodingException e) {
-		// throw new WebbException(e);
-		// } catch (JsonException e) {
-		// throw new WebbException("payload is not a valid Json array", e);
-		// }
-		return null;
+		String Json;
+		try {
+			Json = new String(bytes, WebbConstante.UTF8);
+			return (JsonArray) new JsonParser().parse(Json);
+		} catch (UnsupportedEncodingException e) {
+			throw new WebbException(e);
+		} catch (JsonException e) {
+			throw new WebbException("payload is not a valid Json array", e);
+		}
 	}
 	
 	/**

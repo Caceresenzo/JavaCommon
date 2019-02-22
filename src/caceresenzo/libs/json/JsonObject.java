@@ -37,6 +37,14 @@ public class JsonObject extends HashMap<Object, Object> implements Map<Object, O
 		return getInteger(key, 0);
 	}
 	
+	public long getLong(String key, long defaultValue) {
+		return ParseUtils.parseLong(get(key), defaultValue);
+	}
+	
+	public int getLong(String key) {
+		return getInteger(key, 0);
+	}
+	
 	public String getString(String key, String defaultValue) {
 		return ParseUtils.parseString(get(key), defaultValue);
 	}
