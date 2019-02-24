@@ -1,5 +1,6 @@
 package caceresenzo.libs.list;
 
+import java.util.Iterator;
 import java.util.List;
 
 import caceresenzo.libs.exception.UtilityClassCantBeInstanced;
@@ -24,6 +25,50 @@ public class ListUtils {
 		}
 		
 		return list.get(list.size() - 1);
+	}
+	
+	/**
+	 * Same as {@link #separate(List, String)} but with "<code>, </code>" as the separator.
+	 * 
+	 * @param list
+	 *            Target {@link List} to be separated.
+	 * @return A {@link String} containing all item separated.<br>
+	 *         Or null if the list is <code>null</code> or empty.
+	 * @see #separate(List, String)
+	 */
+	public static String separate(List<?> list) {
+		return separate(list, ", ");
+	}
+	
+	/**
+	 * Separate each element in the <code>list</code> with a specified <code>separator</code>.
+	 * 
+	 * @param list
+	 *            Target {@link List} to be separated.
+	 * @param seperator
+	 *            {@link String} that will be added between each item.
+	 * @return A {@link String} containing all item separated.<br>
+	 *         Or null if the list is <code>null</code> or empty.
+	 */
+	public static String separate(List<?> list, String seperator) {
+		if (list == null || list.isEmpty()) {
+			return null;
+		}
+		
+		StringBuilder builder = new StringBuilder();
+		
+		Iterator<?> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			Object object = iterator.next();
+			
+			builder.append(object);
+			
+			if (iterator.hasNext()) {
+				builder.append(seperator);
+			}
+		}
+		
+		return builder.toString();
 	}
 	
 }

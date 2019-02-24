@@ -26,31 +26,36 @@ public class Logger {
 		}
 		
 		int depth = 3; // Thread.currentThread().getStackTrace().length - 1;
-		String stackTrace = "NULL";
+		String callOrigin = "NULL";
 		if (useClassOnly) {
-			stackTrace = Thread.currentThread().getStackTrace()[depth].getFileName().replace(".java", "");
+			callOrigin = Thread.currentThread().getStackTrace()[depth].getFileName().replace(".java", "");
 		} else {
-			stackTrace = Thread.currentThread().getStackTrace()[depth].getClassName();
+			callOrigin = Thread.currentThread().getStackTrace()[depth].getClassName();
 		}
 		if (addMethodName) {
-			stackTrace += "[" + Thread.currentThread().getStackTrace()[depth].getMethodName() + "]";
+			callOrigin += "[" + Thread.currentThread().getStackTrace()[depth].getMethodName() + "]";
 		}
 		
 		if (useStaticLength) {
 			maxLength = staticLength;
 		}
 		
-		if (stackTrace.length() > maxLength) {
+		if (callOrigin.length() > maxLength) {
 			if (!useClassOnly) {
-				stackTrace = stackTrace.substring(stackTrace.length() - maxLength);
+				callOrigin = callOrigin.substring(callOrigin.length() - maxLength);
 			} else {
-				stackTrace = stackTrace.substring(0, maxLength - 3) + "...";
+				callOrigin = callOrigin.substring(0, maxLength - 3) + "...";
 			}
 		}
 		
 		// Help: https://stackoverflow.com/questions/3243721/how-to-get-the-last-characters-in-a-string-in-java-regardless-of-string-size
 		
-		System.out.println(String.format("%s | %-8s | %-" + maxLength + "s | %s", hourFormat.format(new Date()), level.getDisplayText(), stackTrace, args == null || args.length == 0 ? String.valueOf(format) : String.format(String.valueOf(format), args)));
+		String raw = args == null || args.length == 0 ? String.valueOf(format) : String.format(String.valueOf(format), args);
+		
+		for (String line : raw.split("\n")) {
+			System.out.println(String.format("%s | %-8s | %-" + maxLength + "s | %s", hourFormat.format(new Date()), level.getDisplayText(), callOrigin, line));
+		}
+		
 		if (level == LogLevel.CRITICAL) {
 			System.exit(99);
 		}

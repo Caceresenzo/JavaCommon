@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import caceresenzo.libs.parse.ParseUtils;
 
 @SuppressWarnings("rawtypes")
-public class JsonObject extends HashMap<Object, Object> implements Map<Object, Object>, JsonAware, JsonStreamAware {
+public class JsonObject extends LinkedHashMap<Object, Object> implements Map<Object, Object>, JsonAware, JsonStreamAware {
 	
 	private static final long serialVersionUID = -503443796854799292L;
 	
