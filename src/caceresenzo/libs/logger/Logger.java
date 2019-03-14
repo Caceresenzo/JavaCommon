@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+@Deprecated
 public class Logger {
 	
 	protected static SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss"), fileDateFormat = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");

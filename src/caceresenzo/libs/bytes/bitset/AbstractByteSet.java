@@ -13,7 +13,7 @@ public abstract class AbstractByteSet<T extends Number> implements Serializable 
 	public abstract T set(int index, boolean flag);
 	
 	public boolean get(int index) {
-		return ((int) value & 1 << index) != 0;
+		return ((int) ((Object) value) & 1 << index) != 0;
 	}
 	
 	public T getValue() {

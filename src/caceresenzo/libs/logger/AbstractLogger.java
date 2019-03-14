@@ -1,5 +1,6 @@
 package caceresenzo.libs.logger;
 
+@Deprecated
 public abstract class AbstractLogger {
 	
 	protected AbstractLogger() {
