@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
  * 
  * @author Enzo CACERES
  */
+@Deprecated
 public abstract class AbstractWorkerThread extends Thread {
 	
 	/* Variables */

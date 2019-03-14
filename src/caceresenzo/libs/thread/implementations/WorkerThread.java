@@ -2,6 +2,7 @@ package caceresenzo.libs.thread.implementations;
 
 import caceresenzo.libs.thread.AbstractWorkerThread;
 
+@Deprecated
 public class WorkerThread extends AbstractWorkerThread {
 	
 	private ProgressObserver progressObserver;

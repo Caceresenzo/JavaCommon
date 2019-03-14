@@ -16,7 +16,7 @@ import java.util.List;
 import caceresenzo.libs.empty.EmptyUtils;
 import caceresenzo.libs.stream.StreamUtils;
 
-public class StringUtils extends org.apache.commons.lang3.StringUtils {
+public class StringUtils {
 	
 	/**
 	 * A simple way to write string to file.

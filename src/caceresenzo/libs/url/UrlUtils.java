@@ -3,6 +3,7 @@ package caceresenzo.libs.url;
 import java.net.URLDecoder;
 import java.util.HashMap;
 
+@Deprecated
 public class UrlUtils {
 	
 	public static HashMap<String, String> parseParameters(String compact, boolean decodeValue) {

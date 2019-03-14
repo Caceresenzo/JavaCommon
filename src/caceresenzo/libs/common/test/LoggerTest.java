@@ -30,8 +30,6 @@ public class LoggerTest {
 		String decrypt = AES.decrypt(encrypt, key);
 		Logger.info("decrypt: " + decrypt);
 		
-		PluginAPITest.main(args);
-		
 		// Random logger test
 		Random random = new Random();
 		boolean active = true;
