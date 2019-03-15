@@ -6,6 +6,7 @@ import java.io.PrintStream;
 
 import caceresenzo.libs.logger.Logger;
 
+@Deprecated
 public class SimpleTestUnits {
 	
 	public static void initializeUnit() {

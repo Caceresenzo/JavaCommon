@@ -3,45 +3,36 @@ package caceresenzo.libs.timer;
 import java.util.Date;
 
 /**
- * Class for program event timing. Usage:
- *
- * <pre>
- * InstructionTimer timer = new InstructionTimer();
- * // do stuff
- * System.out.println(timer); // prints time elapsed since object was created.
- * </pre>
+ * Class for program event timing.<br>
+ * <br>
+ * Usage:<br>
+ * <code>
+ * InstructionTimer timer = new InstructionTimer();<br>
+ * // Do your stuff<br>
+ * System.out.println(timer); // Prints time elapsed since object was created.<br>
+ * </code>
  */
 public class InstructionTimer {
+	
+	/* Variables */
 	private Date start;
 	
-	/**
-	 * Start timer.
-	 */
+	/** Start timer. */
 	public InstructionTimer() {
 		reset();
 	}
 	
-	/**
-	 * Returns exact number of milliseconds since timer was started.
-	 * 
-	 * @return Number of milliseconds since timer was started.
-	 */
-	public long getTime() {		
+	/** @return The exact number of milliseconds since timer was started. */
+	public long getTime() {
 		return new Date().getTime() - start.getTime();
 	}
 	
-	/**
-	 * Restarts the timer.
-	 */
+	/** Reset the timer. */
 	public void reset() {
-		start = new Date(); // now
+		start = new Date();
 	}
 	
-	/**
-	 * Returns a formatted string showing the elaspsed time suince the instance was created.
-	 * 
-	 * @return Formatted time string.
-	 */
+	/** @return A formatted string showing the elaspsed time suince the instance was created. */
 	public String toString() {
 		long millis = getTime();
 		

@@ -13,7 +13,7 @@ import caceresenzo.libs.config.processor.AbstractConfigProcessor;
 import caceresenzo.libs.reflection.ReflectionUtils;
 
 /**
- * Simple configuration handler class
+ * Simple configuration handler class.
  * 
  * @author Enzo CACERES
  */
@@ -22,21 +22,17 @@ public class Configuration {
 	/* Variables */
 	private List<AbstractConfigProcessor> processors;
 	
-	/**
-	 * Constructor<br>
-	 * <br>
-	 * 
-	 * Don't {@link Override} or make him protected/private.<br>
-	 */
+	/* Constructor */
+	/** Don't {@link Override} or make him protected/private. */
 	public Configuration() {
 		this.processors = new ArrayList<>();
 	}
 	
 	/**
-	 * Load all config file attached to {@link AbstractConfigProcessor} instances
+	 * Load all config file attached to {@link AbstractConfigProcessor} instances.
 	 * 
 	 * @throws Exception
-	 *             If anything went wrong
+	 *             If anything went wrong.
 	 */
 	public void loadAll() throws Exception {
 		for (AbstractConfigProcessor processor : processors) {
@@ -45,10 +41,10 @@ public class Configuration {
 	}
 	
 	/**
-	 * Save all config file attached to {@link AbstractConfigProcessor} instances
+	 * Save all config file attached to {@link AbstractConfigProcessor} instances.
 	 * 
 	 * @throws Exception
-	 *             If anything went wrong
+	 *             If anything went wrong.
 	 */
 	public void saveAll() throws Exception {
 		for (AbstractConfigProcessor processor : processors) {
@@ -61,12 +57,12 @@ public class Configuration {
 	 * This will depend if they will have the same class and the same target file.
 	 * 
 	 * @param processorClass
-	 *            {@link ConfigProperty}'s processor() class
+	 *            {@link ConfigProperty}'s processor() class.
 	 * @param file
-	 *            Target config file
-	 * @return An {@link AbstractConfigProcessor} instance
+	 *            Target config file.
+	 * @return An {@link AbstractConfigProcessor} instance.
 	 * @throws IllegalStateException
-	 *             If the function failed to create instance of the {@code processorClass} class
+	 *             If the function failed to create instance of the {@code processorClass} class.
 	 */
 	private AbstractConfigProcessor findProcessor(Class<? extends AbstractConfigProcessor> processorClass, File file) {
 		for (AbstractConfigProcessor processor : processors) {
@@ -86,9 +82,7 @@ public class Configuration {
 		return abstractConfigProcessor;
 	}
 	
-	/**
-	 * @return {@link List} of actually instanced {@link AbstractConfigProcessor}
-	 */
+	/** @return {@link List} of actually instanced {@link AbstractConfigProcessor}. */
 	public List<AbstractConfigProcessor> getProcessors() {
 		return processors;
 	}
@@ -99,12 +93,14 @@ public class Configuration {
 	 * This will read all {@link Field} and pick witch have {@link ConfigFile} or {@link ConfigProperty} {@link Annotation}.
 	 * 
 	 * @param configurationClass
-	 *            Your {@link Configuration} extended class
-	 * @return A {@link Configuration} instance
+	 *            Your {@link Configuration} extended class.
+	 * @return A {@link Configuration} instance.
 	 * @throws NullPointerException
-	 *             If the {@code configurationClass} is <code>null</code>
+	 *             If the {@code configurationClass} is <code>null</code>.
+	 * @throws IllegalStateException
+	 *             If the instance creation class failed.
 	 * @throws RuntimeException
-	 *             If {@link Configuration} mapping has failed
+	 *             If {@link Configuration} mapping has failed.
 	 */
 	protected static Configuration initialize(Class<? extends Configuration> configurationClass) {
 		if (configurationClass == null) {

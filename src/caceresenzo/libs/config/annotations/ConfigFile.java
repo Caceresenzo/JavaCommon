@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import caceresenzo.libs.config.processor.AbstractConfigProcessor;
 
 /**
- * Use this {@link Annotation} on a {@code static} {@link Field}
+ * Use this {@link Annotation} on a {@code static} {@link Field}.
  * 
  * @author Enzo CACERES
  */
@@ -21,14 +21,10 @@ import caceresenzo.libs.config.processor.AbstractConfigProcessor;
 @Target(FIELD)
 public @interface ConfigFile {
 	
-	/**
-	 * @return Name of the file
-	 */
+	/** @return Name of the file. */
 	String name();
 	
-	/**
-	 * @return {@link AbstractConfigProcessor} class capable to handle this kind of file
-	 */
+	/** @return {@link AbstractConfigProcessor} class capable to handle this kind of file. */
 	Class<? extends AbstractConfigProcessor> processor();
 	
 }

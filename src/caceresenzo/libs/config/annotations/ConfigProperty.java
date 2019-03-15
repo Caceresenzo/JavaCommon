@@ -24,32 +24,26 @@ import java.lang.reflect.Field;
 @Target(FIELD)
 public @interface ConfigProperty {
 	
-	/**
-	 * @return Already defined {@link ConfigFile}'s name
-	 */
+	/** @return Already defined {@link ConfigFile}'s name. */
 	String file();
 	
-	/**
-	 * @return Property's key
-	 */
+	/** @return Property's key. */
 	String key();
 	
-	/**
-	 * @return Property's default value. It can be anything but it must be scoped in a {@link String}
-	 */
+	/** @return Property's default value. It can be anything but it must be scoped in a {@link String}. */
 	String defaultValue();
 	
 	/**
 	 * If your {@link Field} is not a {@link String}, you must change the type by one of your type.<br>
 	 * <br>
-	 * Default: {@link PropertyType#STRING}
+	 * Default: {@link PropertyType#STRING}.
 	 * 
-	 * @return Property's type
+	 * @return Property's type.
 	 */
 	PropertyType type() default STRING;
 	
 	/**
-	 * Enumeration of property type actually supported
+	 * Enumeration of property type actually supported.
 	 * 
 	 * @author Enzo CACERES
 	 */
