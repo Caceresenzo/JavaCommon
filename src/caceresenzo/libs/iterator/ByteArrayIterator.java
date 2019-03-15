@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Custom {@link Iterator} class to iterate {@link Byte}
+ * Custom {@link Iterator} class to iterate {@link Byte}.
  * 
  * @author Enzo CACERES
  */

@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import caceresenzo.libs.exception.MissingInformationException;
-
 public class FileInternationalization {
 	
 	private Translation translation;
 	
-	public FileInternationalization(InputStream stream) throws MissingInformationException, IOException {
+	public FileInternationalization(InputStream stream) throws IOException {
 		Properties properties = new Properties();
 		properties.load(stream);
 		

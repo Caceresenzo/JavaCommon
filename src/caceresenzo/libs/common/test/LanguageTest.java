@@ -2,7 +2,6 @@ package caceresenzo.libs.common.test;
 
 import java.io.IOException;
 
-import caceresenzo.libs.exception.MissingInformationException;
 import caceresenzo.libs.internationalization.FileInternationalization;
 import caceresenzo.libs.internationalization.i18n;
 import caceresenzo.libs.internationalization.template.TemplateHardInternationalizationEnglish;
@@ -11,7 +10,7 @@ import caceresenzo.libs.logger.Logger;
 
 public class LanguageTest {
 	
-	public static void main(String[] args) throws IOException, MissingInformationException {
+	public static void main(String[] args) throws IOException {
 		Logger.$("Step 1");
 		new TemplateHardInternationalizationEnglish().register("en_US");
 		new TemplateHardInternationalizationFrench().register("fr_FR");

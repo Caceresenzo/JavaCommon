@@ -5,22 +5,31 @@ package caceresenzo.libs.databridge;
  * It is extremely useful while 'final' keyword troubles you while using anonymous class.
  * 
  * @param <T>
- *            target native class
+ *            Target native class.
  */
 public class ObjectWrapper<T> {
-	@SuppressWarnings("unchecked")
-	T targetObject = (T) new Object();
-
-	public ObjectWrapper(T value) {
-		targetObject = value;
+	
+	/* Variable */
+	private T object;
+	
+	/* Constructor */
+	public ObjectWrapper(T object) {
+		this.object = object;
 	}
-
-	public T getValue() {
-		return targetObject;
+	
+	/** @return Wrapped object. */
+	public T get() {
+		return object;
 	}
-
-	public void setValue(T value) {
-		targetObject = value;
+	
+	/**
+	 * Set the new wrapped object.
+	 * 
+	 * @param object
+	 *            New object.
+	 */
+	public void set(T object) {
+		this.object = object;
 	}
-
+	
 }

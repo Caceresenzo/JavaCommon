@@ -122,6 +122,14 @@ public class StringUtils {
 		return builder.toString();
 	}
 	
+	/**
+	 * Check all <code>strings</code> and return <code>true</code> if they are all not empty and not <code>null</code>.<br>
+	 * In the other case, if only one is not valid, a <code>false</code> will be returned.
+	 * 
+	 * @param strings
+	 *            {@link String} that you want to test.
+	 * @return Weather or not all string are valid or not.
+	 */
 	public static boolean validate(String... strings) {
 		for (String string : strings) {
 			if (string == null || string.isEmpty()) {
