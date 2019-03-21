@@ -2,6 +2,7 @@ package caceresenzo.libs.bytes;
 
 import caceresenzo.libs.math.MathUtils;
 
+@Deprecated
 public class ByteFormat {
 	
 	public static String toHumanBytes(long bytes) {

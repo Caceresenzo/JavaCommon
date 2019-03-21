@@ -14,6 +14,7 @@ import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Map.Entry;
 
+@Deprecated
 public class Downloader {
 	
 	/**

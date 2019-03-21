@@ -2,6 +2,7 @@ package caceresenzo.libs.network;
 
 import javax.swing.JOptionPane;
 
+@Deprecated
 public class NetBrowser {
 
 	/**

@@ -1,26 +1,26 @@
 package caceresenzo.libs.bytes;
 
 /**
- * Utility to easely use BitSet
+ * Utility to easely use BitSet.
  * 
  * @author Enzo CACERES
  */
 public class BitSetUtils {
 	
 	private BitSetUtils() {
-		throw new IllegalStateException("This can't be instancied.");
+		throw new IllegalStateException("Class can't be instanced.");
 	}
 	
 	/**
-	 * Change a value in a BitSet
+	 * Change a value in a BitSet.
 	 * 
 	 * @param mask
-	 *            Target mask
+	 *            Target mask.
 	 * @param index
-	 *            Index of the value you want to change
+	 *            Index of the value you want to change.
 	 * @param flag
-	 *            New value
-	 * @return The modified mask
+	 *            New value.
+	 * @return The modified mask.
 	 */
 	public static int set(int mask, int index, boolean flag) {
 		if (flag) {
@@ -31,15 +31,15 @@ public class BitSetUtils {
 	}
 	
 	/**
-	 * Change a value in a BitSet
+	 * Change a value in a BitSet.
 	 * 
 	 * @param mask
-	 *            Target mask
+	 *            Target mask.
 	 * @param index
-	 *            Index of the value you want to change
+	 *            Index of the value you want to change.
 	 * @param flag
-	 *            New value
-	 * @return The modified mask
+	 *            New value.
+	 * @return The modified mask.
 	 */
 	public static byte set(byte mask, int index, boolean flag) {
 		if (flag) {
@@ -50,13 +50,13 @@ public class BitSetUtils {
 	}
 	
 	/**
-	 * Get a value in a BitSet
+	 * Get a value in a BitSet.
 	 * 
 	 * @param mask
-	 *            Target mask
+	 *            Target mask.
 	 * @param index
-	 *            Index of the value you want to get
-	 * @return Value state
+	 *            Index of the value you want to get.
+	 * @return Value state.
 	 */
 	public static boolean get(int mask, int index) {
 		return (mask & 1 << index) != 0;

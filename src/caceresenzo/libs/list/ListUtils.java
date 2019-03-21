@@ -3,13 +3,11 @@ package caceresenzo.libs.list;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sun.xml.internal.txw2.IllegalSignatureException;
-
 public class ListUtils {
 	
 	/* Constructor */
 	private ListUtils() {
-		throw new IllegalSignatureException("Class can't be instanced.");
+		throw new IllegalStateException("Class can't be instanced.");
 	}
 	
 	/**

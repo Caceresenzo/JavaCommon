@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 
+@Deprecated
 public class Internet {
 
 	public static String getLocalIP() {
