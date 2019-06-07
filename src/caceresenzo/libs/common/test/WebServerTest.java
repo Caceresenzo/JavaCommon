@@ -12,12 +12,12 @@ public class WebServerTest {
 	
 	public static void main(String[] args) throws HttpServerException {
 		
-		final String rootDir = HttpServerConstants.DEFAULT_ROOT_DIRECTORY;
-		final int port = HttpServerConstants.DEFAULT_PORT;
+		final String rootDir = "C:\\Users\\cacer\\OneDrive\\Developments\\Workspace"; //HttpServerConstants.DEFAULT_ROOT_DIRECTORY;
+		final int port = 85;
 		
 		// final HttpServer server = new HttpServer("C:\\Users\\cacer\\Videos", port);
 		HttpServerConfig config = new HttpServerConfig(new HttpExtensionRegistry(true), new HttpHookRegistry());
-		final HttpServer server = new HttpServer(rootDir, port, config, ServerMode.EXPLORER);
+		final HttpServer server = new HttpServer(rootDir, port, config, ServerMode.FULL);
 		
 		Thread webServer = new Thread(new Runnable() {
 			@Override

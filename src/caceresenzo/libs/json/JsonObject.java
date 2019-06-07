@@ -46,6 +46,14 @@ public class JsonObject extends LinkedHashMap<Object, Object> implements Map<Obj
 		return getInteger(key, 0);
 	}
 	
+	public double getDouble(String key) {
+		return getDouble(key, 0);
+	}
+	
+	public double getDouble(String key, double defaultValue) {
+		return ParseUtils.parseDouble(get(key), defaultValue);
+	}
+	
 	public String getString(String key, String defaultValue) {
 		return ParseUtils.parseString(get(key), defaultValue);
 	}

@@ -1,5 +1,9 @@
 package caceresenzo.libs.filesystem;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.security.cert.Extension;
+
 public class FilenameUtils {
 	
 	private static final int NOT_FOUND = -1;
@@ -31,6 +35,22 @@ public class FilenameUtils {
 		final int lastUnixPos = filename.lastIndexOf(UNIX_SEPARATOR);
 		final int lastWindowsPos = filename.lastIndexOf(WINDOWS_SEPARATOR);
 		return Math.max(lastUnixPos, lastWindowsPos);
+	}
+	
+	/**
+	 * Create a {@link FileFilter} that only return <code>true</code> if the file's extension is the same as the <code>extension</code> parameter.
+	 * 
+	 * @param extension
+	 *            File extension without the dot.
+	 * @return A {@link FileFilter} instance.
+	 */
+	public static FileFilter createFilter(final String extension) {
+		return new FileFilter() {
+			@Override
+			public boolean accept(File pathname) {
+				return pathname.getName().endsWith("." + extension);
+			}
+		};
 	}
 	
 }
