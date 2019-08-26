@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,6 +39,30 @@ public class ReflectionUtils {
 		} catch (Exception ignored) {
 			return null;
 		}
+	}
+	
+	public static void removeFinalProtection(Field field) throws NoSuchFieldException, IllegalAccessException {
+		field.setAccessible(true);
+		
+		Field modifiersField = Field.class.getDeclaredField("modifiers");
+		modifiersField.setAccessible(true);
+		modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+	}
+
+	public static boolean silentlyRemoveFinalProtection(Field field) {
+		try {
+			removeFinalProtection(field);
+			
+			return true;
+		} catch (Exception exception) {
+			return false;
+		}
+	}
+	
+	public static void setFinal(Field field, Object object, Object value) throws NoSuchFieldException, IllegalAccessException {
+		removeFinalProtection(field);
+		
+		field.set(object, value);
 	}
 	
 }

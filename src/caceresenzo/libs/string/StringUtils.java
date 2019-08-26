@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import caceresenzo.libs.empty.EmptyUtils;
 import caceresenzo.libs.stream.StreamUtils;
@@ -154,6 +155,19 @@ public class StringUtils {
 		}
 		
 		return builder.toString();
+	}
+
+	public static String prefill(String string, String prefix, int charCount) {
+		Objects.requireNonNull(string, "Start string can't be null.");
+		Objects.requireNonNull(prefix, "Prefix can't be null.");
+		
+		String finalString = string;
+		
+		while (finalString.length() < charCount) {
+			finalString = prefix + finalString;
+		}
+		
+		return finalString;
 	}
 	
 }
