@@ -2,7 +2,6 @@ package caceresenzo.libs.json;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -60,6 +59,14 @@ public class JsonObject extends LinkedHashMap<Object, Object> implements Map<Obj
 	
 	public String getString(String key) {
 		return getString(key, "");
+	}
+	
+	public Object getOrDefault(String key, Object defaultValue) {
+		if (containsKey(key)) {
+			return get(key);
+		}
+		
+		return defaultValue;
 	}
 	
 	public JsonObject getJsonObject(String key, JsonObject defaultValue) {

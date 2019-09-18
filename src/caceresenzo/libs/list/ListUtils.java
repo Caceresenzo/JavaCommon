@@ -3,6 +3,8 @@ package caceresenzo.libs.list;
 import java.util.Iterator;
 import java.util.List;
 
+import caceresenzo.libs.random.Randomizer;
+
 public class ListUtils {
 	
 	/* Constructor */
@@ -11,8 +13,27 @@ public class ListUtils {
 	}
 	
 	/**
+	 * Get a random element from a {@link List list}.
+	 * 
+	 * @param <T>
+	 *            {@link List}'s type parameter.
+	 * @param list
+	 *            Target {@link List}.
+	 * @return A random item from the {@link List list}. Or <code>null</code> if the {@link List list} is empty or <code>null</code>.
+	 */
+	public static <T> T getRandomItem(List<T> list) {
+		if (list == null || list.isEmpty()) {
+			return null;
+		}
+		
+		return list.get(Randomizer.nextRangeInt(0, list.size() - 1));
+	}
+	
+	/**
 	 * Get the lastest item of a {@link List}.
 	 * 
+	 * @param <T>
+	 *            {@link List}'s type parameter.
 	 * @param list
 	 *            Target {@link List}.
 	 * @return <code>null</code> if the <code>list</code> is <code>null</code> or empty. Or the lastest item got from the index size - 1.
