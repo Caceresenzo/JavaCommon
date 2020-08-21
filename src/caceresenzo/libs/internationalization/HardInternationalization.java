@@ -15,6 +15,10 @@ public abstract class HardInternationalization {
 		this.translation.addString(key, line);
 	}
 	
+	public Translation getTranslation() {
+		return translation;
+	}
+	
 	public void register(String language) {
 		translation.setTargetLanguage(language);
 		i18n.register(translation);

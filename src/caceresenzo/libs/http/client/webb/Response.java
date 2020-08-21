@@ -1,6 +1,8 @@
 package caceresenzo.libs.http.client.webb;
 
 import java.net.HttpURLConnection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Holds data about the response message returning from HTTP request.
@@ -170,6 +172,10 @@ public class Response<T> {
 	 */
 	public int getHeaderFieldInt(String field, int defaultValue) {
 		return getConnection().getHeaderFieldInt(field, defaultValue);
+	}
+	
+	public Map<String, List<String>> getHeaderFields() {
+		return getConnection().getHeaderFields();
 	}
 	
 	/**

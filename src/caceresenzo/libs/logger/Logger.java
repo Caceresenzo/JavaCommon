@@ -54,7 +54,7 @@ public class Logger {
 		String raw = args == null || args.length == 0 ? String.valueOf(format) : String.format(String.valueOf(format), args);
 		
 		for (String line : raw.split("\n")) {
-			System.out.println(String.format("%s | %-8s | %-" + maxLength + "s | %s", hourFormat.format(new Date()), level.getDisplayText(), callOrigin, line));
+			System.out.println(String.format("%s | %-8s | %-" + maxLength + "s | %s", hourFormat.format(new Date()), level.getDisplayText(), callOrigin, line.replace("\n", "")));
 		}
 		
 		if (level == LogLevel.CRITICAL) {

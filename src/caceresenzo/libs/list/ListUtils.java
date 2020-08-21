@@ -70,8 +70,24 @@ public class ListUtils {
 	 *         Or null if the list is <code>null</code> or empty.
 	 */
 	public static String separate(List<?> list, String seperator) {
+		return separate(list, seperator, null);
+	}
+	
+	/**
+	 * Separate each element in the <code>list</code> with a specified <code>separator</code>.
+	 * 
+	 * @param list
+	 *            Target {@link List} to be separated.
+	 * @param seperator
+	 *            {@link String} that will be added between each item.
+	 * @param defaultValue
+	 *            Default returned value if the {@link List list} is <code>null</code> or empty.
+	 * @return A {@link String} containing all item separated.<br>
+	 *         Or the <code>defaultValue</code> if the {@link List list} is <code>null</code> or empty.
+	 */
+	public static String separate(List<?> list, String seperator, String defaultValue) {
 		if (list == null || list.isEmpty()) {
-			return null;
+			return defaultValue;
 		}
 		
 		StringBuilder builder = new StringBuilder();

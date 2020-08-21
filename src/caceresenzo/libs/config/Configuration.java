@@ -102,7 +102,8 @@ public class Configuration {
 	 * @throws RuntimeException
 	 *             If {@link Configuration} mapping has failed.
 	 */
-	protected static Configuration initialize(Class<? extends Configuration> configurationClass) {
+	@SuppressWarnings("unchecked")
+	protected static <T extends Configuration> T initialize(Class<T> configurationClass) {
 		if (configurationClass == null) {
 			throw new NullPointerException("Configuration class can't be null.");
 		}
@@ -139,7 +140,7 @@ public class Configuration {
 			throw new RuntimeException("Failed to fully create config mapping.", exception);
 		}
 		
-		return configuration;
+		return (T) configuration;
 	}
 	
 }

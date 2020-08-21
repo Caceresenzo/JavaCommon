@@ -14,7 +14,7 @@ public abstract class AbstractJavaScriptExecutor {
 	 *            Target code.
 	 * @return Javascript response.
 	 * @throws Exception
-	 *             If an exception append
+	 *             If an exception append.
 	 */
 	public abstract Object eval(String code) throws Exception;
 	
@@ -29,9 +29,9 @@ public abstract class AbstractJavaScriptExecutor {
 	}
 	
 	/**
-	 * Get executor, and create one if is has been already set. (default is {@link MainJavaScriptExecutor})
+	 * Get current executor, or create one if no has been already set. (default is {@link MainJavaScriptExecutor})
 	 * 
-	 * @return Stored executor
+	 * @return Stored executor.
 	 */
 	public static AbstractJavaScriptExecutor get() {
 		if (EXECUTOR == null) {

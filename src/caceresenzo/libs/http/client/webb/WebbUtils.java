@@ -85,7 +85,10 @@ public class WebbUtils {
 	public static JsonObject toJsonObject(byte[] bytes) {
 		String Json;
 		try {
-			Json = new String(bytes, WebbConstante.UTF8);
+			boolean isBom = (bytes.length > 0 && (bytes[0] & 0xFF) == 0xEF) && (bytes.length > 1 && (bytes[1] & 0xFF) == 0xBB) && (bytes.length > 2 && (bytes[2] & 0xFF) == 0xBF);
+			int offset = isBom ? 3 : 0;
+			
+			Json = new String(bytes, offset, bytes.length - offset, WebbConstante.UTF8);
 			return (JsonObject) new JsonParser().parse(Json);
 		} catch (UnsupportedEncodingException e) {
 			throw new WebbException(e);
